@@ -1,20 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.getElementById('checkPage');
-  checkPageButton.addEventListener('click', function() {
 
+d = document;
+
+d.addEventListener('DOMContentLoaded', function() {
+  var fillPagebutton = d.getElementById('autofill');
+
+  fillPagebutton.addEventListener('click', function() {
     chrome.tabs.getSelected(null, function(tab) {
-      d = document;
+      var inputs=d.getElementsByTagName("input");    //look for all inputs
+      var fields = ['first_name', 'last_name', 'email'];
 
-      var f = d.createElement('form');
-      f.action = 'http://gtmetrix.com/analyze.html?bm';
-      f.method = 'post';
-      var i = d.createElement('input');
-      i.type = 'hidden';
-      i.name = 'url';
-      i.value = tab.url;
-      f.appendChild(i);
-      d.body.appendChild(f);
-      f.submit();
+      print("runs");
+      for(var i = 0; i < inputs.length; i++){   //for each input on document
+
+            var input=inputs[i];     //look at whatever input
+
+            if(input.type=="text" && (fields.indexOf(input.id)!=-1)){
+                d.getElementById(inputs[i].id).value="TEST";
+                //d.forms[0].submit();
+            }
+       }});
     });
-  }, false);
-}, false);
+      
+  });
+ 
+

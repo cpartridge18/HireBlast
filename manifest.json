@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "HireBlast",
-  "description": "This extension will autofill Greenhouse.io applicaion forms",
+  "description": "This extension will autofill Greenhouse application forms.",
   "version": "1.0",
 
   "browser_action": {
