@@ -1,34 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Saves options.
   function saveOptions() {
-    var firstName = document.getElementById("first-name").value;
-    var lastName = document.getElementById("last-name").value;
+    chrome.storage.sync.get(["hbPrefs"], function(oldPrefs) {
+      // These vars get set to new values, unless they are empty strings, in which case they get set to the old values.
+      var newFirstName = document.getElementById("first-name").value || oldPrefs.hbPrefs.firstName;
+      var newLastName = document.getElementById("last-name").value   || oldPrefs.hbPrefs.lastName;
 
-    var prefs = {
-      firstName: firstName,
-      lastName: lastName
-    }
+      var newPrefs = {
+        firstName: newFirstName,
+        lastName: newLastName
+      };
 
-    console.log(prefs);
-
-    chrome.storage.sync.set({"hbPrefs": prefs}, function() {
-      restore_options();
-      document.getElementById('save-confirmation').innerHTML = "Saved!";
-
-      setTimeout(function() {
-        document.getElementById('save-confirmation').innerHTML = "";
-      }, 1000);
-
+      chrome.storage.sync.set({"hbPrefs": newPrefs}, function() {
+        restore_options();
+      });
     });
+
+
 
   }
 
-
+  // (All frontend) turns pref content to placeholder.
   function restore_options() {
     chrome.storage.sync.get(["hbPrefs"], function(prefs) {
       document.getElementById('first-name').placeholder = prefs.hbPrefs.firstName;
       document.getElementById('first-name').value = "";
       document.getElementById('last-name').placeholder = prefs.hbPrefs.lastName;
       document.getElementById('last-name').value = "";
+
+      document.getElementById('save-confirmation').innerHTML = "Saved!";
+      setTimeout(function() {
+        document.getElementById('save-confirmation').innerHTML = "";
+      }, 1000);
     });
   }
 
