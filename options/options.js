@@ -13,12 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
       chrome.storage.sync.set({"hbPrefs": newPrefs}, function() {
         restore_options();
+        showSaveMessage();
       });
     });
 
 
 
   }
+
 
   // (All frontend) turns pref content to placeholder.
   function restore_options() {
@@ -27,14 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('first-name').value = "";
       document.getElementById('last-name').placeholder = prefs.hbPrefs.lastName;
       document.getElementById('last-name').value = "";
-
-      document.getElementById('save-confirmation').innerHTML = "Saved!";
-      setTimeout(function() {
-        document.getElementById('save-confirmation').innerHTML = "";
-      }, 1000);
     });
   }
 
+
+  // Shows the save message for 1 second.
+  function showSaveMessage() {
+    document.getElementById('save-confirmation').innerHTML = "Saved!";
+    setTimeout(function() {
+      document.getElementById('save-confirmation').innerHTML = "";
+    }, 1000);
+  }
 
   restore_options();
 
