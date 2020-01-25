@@ -1,8 +1,9 @@
-console.log(pp)
+console.log("pp");
+d=document;
 
 // chrome.tabs.getSelected(null, function(tab) {
-//       var inputs=d.getElementsByTagName("input");    //look for all inputs
-//       var fields = ['first_name', 'last_name', 'email'];
+       var inputs=d.getElementsByTagName("input");    //look for all inputs
+       var fields = ['first_name', 'last_name', 'email'];
 
 //       print("runs");
       for(var i = 0; i < inputs.length; i++){   //for each input on document
@@ -13,4 +14,5 @@ console.log(pp)
                 d.getElementById(inputs[i].id).value="TEST";
                 //d.forms[0].submit();
             }
+          }
        //}});

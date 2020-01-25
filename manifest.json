@@ -16,10 +16,10 @@
    "storage"
    ],
 
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": true
-  },
+  // "background": {
+  //   "scripts": ["background.js"],
+  //   "persistent": false
+  // },
 
   "content_scripts": [
    {
