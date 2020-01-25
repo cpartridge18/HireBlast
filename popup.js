@@ -7,6 +7,7 @@ d.addEventListener('DOMContentLoaded', function() {
 
    fillPagebutton.addEventListener('click', function() {
       console.log("fuckmejerry")
+
       chrome.runtime.sendMessage({
         action:'fillFields'
       });
