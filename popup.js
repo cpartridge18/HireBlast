@@ -9,7 +9,7 @@ d.addEventListener('DOMContentLoaded', function() {
       console.log("fuckmejerry")
 
       chrome.runtime.sendMessage({
-        action:'fillFields'
+        action:'runContentScript'
       });
   //   chrome.tabs.getSelected(null, function(tab) {
   //     var inputs=d.getElementsByTagName("input");    //look for all inputs
