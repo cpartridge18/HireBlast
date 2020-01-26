@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif&display=swap');
+
+body {
+    font-family: "Noto Serif", serif;
+}
+
+
+h2 {
+    text-decoration: underline;
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+.header-logo {
+    width: 250px;
+}
+
+.subtext {
+    font-style: italic;
+}
+
+.option {
+    margin: 15px 0 25px 0;
+}
