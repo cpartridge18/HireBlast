@@ -8,6 +8,8 @@ function gotMessage(message, sender, sendResponse){
   if (message.txt === "hello") {
     var inputs=d.getElementsByTagName("input");    //look for all inputs
        //var fields = ['first_name', 'first-name', 'last_name', 'email','phone'];
+
+       //below defines lists of tags for every fields
        var firstName = [prefs.hbPrefs.firstNameOptions.split(',')];
        var lastName = [prefs.hbPrefs.lastNameOptions.split(',')];
        var email = [prefs.hbPrefs.emailOptions.split(',')];
