@@ -8,11 +8,15 @@ function gotMessage(message, sender, sendResponse){
   if (message.txt === "hello") {
     var inputs=d.getElementsByTagName("input");    //look for all inputs
        //var fields = ['first_name', 'first-name', 'last_name', 'email','phone'];
-       var firstName = prefs.hbPrefs.firstNameOptions;
-       var lastName = prefs.hbPrefs.lastNameOptions;
-       var email = prefs.hbPrefs.emailOptions;
-       var phone = prefs.hbPrefs.phoneOptions;
-
+       var firstName = [prefs.hbPrefs.firstNameOptions.split(',')];
+       var lastName = [prefs.hbPrefs.lastNameOptions.split(',')];
+       var email = [prefs.hbPrefs.emailOptions.split(',')];
+       var phone = [prefs.hbPrefs.phoneOptions.split(',')];
+       var linkedin = [prefs.hbPrefs.linkedinOptions.split(',')];
+       var github = [prefs.hbPrefs.githubOptions.split(',')];
+       var portfolio = [prefs.hbPrefs.portfolioOptions.split(',')];
+       var portalUser = [prefs.hbPrefs.portalUserOptions.split(',')];
+       var portalPass = [prefs.hbPrefs.portalPassOptions.split(',')];
        //LinkedIn,GitHub,Portfolio website,Portal username,Portal password
        // {"firstName": ["first_name", "first-name"]}
 
@@ -32,8 +36,23 @@ function gotMessage(message, sender, sendResponse){
             if (email.indexOf(input.id)!=-1){
               d.getElementById(inputs[i].id).value=prefs.hbPrefs.email;
             }
-            if (phonenumber.indexOf(input.id)!=-1){
+            if (phone.indexOf(input.id)!=-1){
               d.getElementById(inputs[i].id).value=prefs.hbPrefs.phone;
+            }
+            if (linkedin.indexOf(input.id)!=-1){
+              d.getElementById(inputs[i].id).value=prefs.hbPrefs.linkedin;
+            }
+            if (github.indexOf(input.id)!=-1){
+              d.getElementById(inputs[i].id).value=prefs.hbPrefs.github;
+            }
+            if (portfolio.indexOf(input.id)!=-1){
+              d.getElementById(inputs[i].id).value=prefs.hbPrefs.portfolio;
+            }
+            if (portalUser.indexOf(input.id)!=-1){
+              d.getElementById(inputs[i].id).value=prefs.hbPrefs.portalUser;
+            }
+            if (portalPass.indexOf(input.id)!=-1){
+              d.getElementById(inputs[i].id).value=prefs.hbPrefs.portalPass;
             }
           }
 
