@@ -2,7 +2,7 @@
 d = document;
 
 d.addEventListener('DOMContentLoaded', function() {
-  
+
    //var fillPagebutton = d.getElementById('autofill');
 
 //chrome.browserAction.onClicked.addListener(buttonClicked);
@@ -14,8 +14,8 @@ function buttonClicked(tab) {
   let params = {
     active: true,
     currentWindow: true
-  } 
-  chrome.tabs.query(params, function(tabs) { 
+  }
+  chrome.tabs.query(params, function(tabs) {
 
     console.log("run")
     let msg = {
@@ -30,7 +30,7 @@ function buttonClicked(tab) {
    //    console.log("fuckmejerry")
 
    //    chrome.runtime.sendMessage({
-   //      action:'runContentScript'
+   //      action:'runContentScript'F
    //    });
   //   chrome.tabs.getSelected(null, function(tab) {
   //     var inputs=d.getElementsByTagName("input");    //look for all inputs
@@ -55,7 +55,5 @@ function buttonClicked(tab) {
        window.open(chrome.runtime.getURL('options.html'));
      }
    });
-      
-   });
- 
 
+   });
