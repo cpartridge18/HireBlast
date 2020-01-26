@@ -15,7 +15,9 @@ h3 {
 }
 
 .header-logo {
+    position: relative;
     width: 250px;
+    right: 56px;
 }
 
 .subtext {
