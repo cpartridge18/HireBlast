@@ -18,9 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         showSaveMessage();
       });
     });
-
-
-
   }
 
 
