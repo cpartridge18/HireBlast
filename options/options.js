@@ -2,14 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
   // Saves options.
   function saveOptions() {
     chrome.storage.sync.get(["hbPrefs"], function(oldPrefs) {
-      // These vars get set to new values, unless they are empty strings, in which case they get set to the old values.
-      var newFirstName = document.getElementById("first-name").value || oldPrefs.hbPrefs.firstName;
-      var newLastName = document.getElementById("last-name").value   || oldPrefs.hbPrefs.lastName;
+      var newPrefs = {};
 
-      var newPrefs = {
-        firstName: newFirstName,
-        lastName: newLastName
-      };
+      var inputs = document.getElementsByTagName("input");
+      for(var i=0; i<inputs.length; i++) {
+        var id = inputs[i].id;
+        var oldValue = oldPrefs.hbPrefs[id];
+
+        // Set the new pref to the new value, unless the new value was empty, in which case set it to the old value.
+        newPrefs[id] = inputs[i].value || oldValue;
+      }
 
       chrome.storage.sync.set({"hbPrefs": newPrefs}, function() {
         restore_options();
@@ -25,10 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // (All frontend) turns pref content to placeholder.
   function restore_options() {
     chrome.storage.sync.get(["hbPrefs"], function(prefs) {
-      document.getElementById('first-name').placeholder = prefs.hbPrefs.firstName;
-      document.getElementById('first-name').value = "";
-      document.getElementById('last-name').placeholder = prefs.hbPrefs.lastName;
-      document.getElementById('last-name').value = "";
+      var inputs = document.getElementsByTagName("input");
+      for(var i=0; i<inputs.length; i++) {
+        var id = inputs[i].id;
+        var oldPrefValue = prefs.hbPrefs[id];
+
+        if (oldPrefValue == undefined) {
+          oldPrefValue = "";
+        }
+
+        inputs[i].placeholder = oldPrefValue;
+        inputs[i].value = "";
+      }
     });
   }
 
