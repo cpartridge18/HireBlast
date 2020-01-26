@@ -123,10 +123,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 
+  function isEmpty(obj) {
+    return !obj || Object.keys(obj).length === 0;
+  }
+
 
   function setDefaultData() {
     chrome.storage.sync.get(["hbPrefs"], function (prefs) {
-      if (prefs === {}) {
+      if (isEmpty(prefs)) {
         defaultPrefs = {
           firstName: {
             name: "First name",
@@ -142,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
           },
           phoneNumber: {
             name: "Phone number",
-            tags: ["phone-number", "phone_number", "phonenumber"]
+            tags: ["phone", "phone-number", "phone_number", "phonenumber"]
           },
           linkedin: {
             name: "LinkedIn URL",
