@@ -13,19 +13,22 @@
   },
   "permissions": [
    "activeTab",
-   "storage"
+   "tabs",
+   "storage",
+   "https://*/*",
+   "http://*/*"
    ],
 
-  // "background": {
-  //   "scripts": ["background.js"],
-  //   "persistent": false
-  // },
-
-  "content_scripts": [
-   {
-   	 "matches": ["*://*/*"],
-     "js": ["contentScript.js"]
+   "background": {
+     "scripts": ["background.js"],
+     "persistent": false
    }
- ]
+
+//  "content_scripts": [
+//   {
+//   	 "matches": ["*://*/*"],
+//     "js": ["contentScript.js"]
+//   }
+// ]
 
 }
