@@ -20,6 +20,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+function checkUpdate() {
+  //chrome.storage.sync.set(hbPrefs)
+  exists = false
+  newField = d.getElementById('field-name').value;
+  tags = d.getElementById('tags').value.split(',');
+  value = d.getElementById('value').value;
+  for (const x in hbPrefs) {
+    if (x === newField) {
+      tagsKey = newField + "Options" // for example, SSN becomes SSNOptions
+
+      // if it's undefined, we make a new tags list
+      if typeof(hbPrefs[tagsKey] === "undefined") {
+        hbPrefs[tagsKey] = tags
+      } else {
+        // otherwise we'll just append to the existing tags list
+        for (const y in tags) {
+          hbPrefs[tagsKey].push(y)
+        }
+      }
+
+      exists = true
+      break
+    }
+  }
+
+  if (!exists) {
+    hbPrefs[newField] = value
+  }
+
+  chrome.storage.sync.set({"hbPrefs": hbPrefs}, function() {
+    console.log(hbPrefs);
+  }
+
+
+//restore_options()
+}
 
   // (All frontend) turns pref content to placeholder.
   function restore_options() {
@@ -49,6 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   restore_options();
+
+  document.getElementById('new-field').addEventListener('click', saveOptions);
 
   document.getElementById('save-button').addEventListener('click', saveOptions);
 });
