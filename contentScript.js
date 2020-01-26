@@ -1,8 +1,12 @@
-console.log("pp");
 d=document;
 
-// chrome.tabs.getSelected(null, function(tab) {
-       var inputs=d.getElementsByTagName("input");    //look for all inputs
+
+chrome.runtime.onMessage.addListener(gotMessage);
+
+function gotMessage(message, sender, sendResponse){
+  console.log(message)
+  if (message.txt === "hello") {
+    var inputs=d.getElementsByTagName("input");    //look for all inputs
        var fields = ['first_name', 'last_name', 'email'];
 
 //       print("runs");
@@ -15,4 +19,8 @@ d=document;
                 //d.forms[0].submit();
             }
           }
+  }
+}
+// chrome.tabs.getSelected(null, function(tab) {
+       
        //}});

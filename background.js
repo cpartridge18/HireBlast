@@ -1,8 +1,11 @@
-  chrome.runtime.onMessage.addListener(
-    function(message, callback) {
-      if (message.action == “runContentScript”){
-        chrome.tabs.executeScript({
-          file: 'contentScript.js'
-        });
-      }
-   });
+  
+
+chrome.browserAction.onClicked.addListener(buttonClicked);
+
+function buttonClicked(tab) {
+	console.log("tab")
+	let msg = {
+		txt: "hello"
+	}
+	chrome.tabs.sendMessage(tab.id, "hello")
+}

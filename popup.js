@@ -3,14 +3,35 @@ d = document;
 
 d.addEventListener('DOMContentLoaded', function() {
   
-   var fillPagebutton = d.getElementById('autofill');
+   //var fillPagebutton = d.getElementById('autofill');
 
-   fillPagebutton.addEventListener('click', function() {
-      console.log("fuckmejerry")
+//chrome.browserAction.onClicked.addListener(buttonClicked);
 
-      chrome.runtime.sendMessage({
-        action:'runContentScript'
-      });
+d.getElementById('autofill').addEventListener('click', buttonClicked);
+
+
+function buttonClicked(tab) {
+  let params = {
+    active: true,
+    currentWindow: true
+  } 
+  chrome.tabs.query(params, function(tabs) { 
+
+    console.log("run")
+    let msg = {
+      txt: "hello"
+    }
+    chrome.tabs.sendMessage(tabs[0].id, msg);
+})
+}
+
+
+   // fillPagebutton.addEventListener('click', function() {
+   //    console.log("fuckmejerry")
+
+   //    chrome.runtime.sendMessage({
+   //      action:'runContentScript'
+   //    });
   //   chrome.tabs.getSelected(null, function(tab) {
   //     var inputs=d.getElementsByTagName("input");    //look for all inputs
   //     var fields = ['first_name', 'last_name', 'email'];
@@ -25,7 +46,7 @@ d.addEventListener('DOMContentLoaded', function() {
   //               //d.forms[0].submit();
   //           }
   //      }});
-     });
+     // });
 
    d.getElementById("options-button").addEventListener('click', function() {
      if (chrome.runtime.openOptionsPage) {
@@ -35,6 +56,6 @@ d.addEventListener('DOMContentLoaded', function() {
      }
    });
       
-  });
+   });
  
 
